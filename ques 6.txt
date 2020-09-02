@@ -1,0 +1,108 @@
+#include "invoice.h"
+using namespace std;
+
+invoice::invoice(string partNumber = "name", string description = "something", int purchased = 0, int pricePerItem = 0)
+{
+    this->partNumber = partNumber;
+    this->description = description;
+    this->purchased = purchased;
+    this->pricePerItem = pricePerItem;
+}
+
+void invoice::setpartNumber(string Number)
+{
+
+    this->partNumber = Number;
+}
+string invoice::getpartNumber()
+{
+    return partNumber;
+}
+void invoice::setDescription(string something)
+{
+    this->description = something;
+}
+string invoice::getDescription()
+{
+    return description;
+}
+void invoice::setPurchase(int value)
+{
+    if (purchased < 0)
+    {
+        value = 0;
+    }
+
+    this->purchased = purchased;
+}
+int invoice::getPurchase()
+{
+    return purchased;
+}
+void invoice::setPriceItem(int value)
+{
+    if (value < 0)
+    {
+        value = 0;
+    }
+    this->pricePerItem = value;
+}
+int invoice::getPriceItem()
+{
+    return pricePerItem;
+}
+
+int invoice::getInvoiceAmount()
+{
+    int total;
+    total = pricePerItem * purchased;
+    return total;
+}
+
+
+
+#include <iostream>
+#include <string.h>
+using namespace std;
+
+class invoice
+{
+private:
+    string partNumber;
+    string description;
+    int purchased;
+    int pricePerItem;
+
+public:
+    invoice(string partNumber, string description, int purchased, int pricePerItem);
+    void setpartNumber(string Number);
+    string getpartNumber();
+    void setDescription(string something);
+    string getDescription();
+    void setPurchase(int value);
+    int getPurchase();
+    void setPriceItem(int value);
+    int getPriceItem();
+
+    int getInvoiceAmount();
+};
+
+
+
+#include <iostream>
+#include "invoice.h"
+using namespace std;
+
+int main()
+{
+    invoice a1("Coke", "Cold Drink", 10, 20);
+    a1.setpartNumber("Ninja Melk");
+    a1.setDescription("Energy drink");
+    a1.setPriceItem(70);
+    cout << a1.getpartNumber() << " " << a1.getDescription() << "\n";
+    cout << "item purchased:" << a1.getPurchase() << " item price:" << a1.getPriceItem() << "\n";
+    cout << "total amount:";
+    cout << a1.getInvoiceAmount();
+
+    return 0;
+}
